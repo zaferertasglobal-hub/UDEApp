@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="UDEApp.Client/UDEApp.Client.csproj" />
+  <Project Path="UDEApp.Server/UDEApp.Server.csproj" />
+  <Project Path="UDEApp.Shared/UDEApp.Shared.csproj" />
+</Solution>

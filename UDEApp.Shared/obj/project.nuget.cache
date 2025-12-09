@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "RRcMPN2IXnM=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\zafer\\OneDrive\\Desktop\\UDEApp\\UDEApp\\UDEApp.Shared\\UDEApp.Shared.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\zafer\\.nuget\\packages\\markdig\\0.44.0\\markdig.0.44.0.nupkg.sha512"
+  ],
+  "logs": []
+}

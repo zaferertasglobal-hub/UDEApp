@@ -1,0 +1,12 @@
+C:\Users\zafer\OneDrive\Desktop\UDEApp\UDEApp\UDEApp.Shared\bin\Debug\net8.0\UDEApp.Shared.deps.json
+C:\Users\zafer\OneDrive\Desktop\UDEApp\UDEApp\UDEApp.Shared\bin\Debug\net8.0\UDEApp.Shared.dll
+C:\Users\zafer\OneDrive\Desktop\UDEApp\UDEApp\UDEApp.Shared\bin\Debug\net8.0\UDEApp.Shared.pdb
+C:\Users\zafer\OneDrive\Desktop\UDEApp\UDEApp\UDEApp.Shared\obj\Debug\net8.0\UDEApp.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\zafer\OneDrive\Desktop\UDEApp\UDEApp\UDEApp.Shared\obj\Debug\net8.0\UDEApp.Shared.AssemblyInfoInputs.cache
+C:\Users\zafer\OneDrive\Desktop\UDEApp\UDEApp\UDEApp.Shared\obj\Debug\net8.0\UDEApp.Shared.AssemblyInfo.cs
+C:\Users\zafer\OneDrive\Desktop\UDEApp\UDEApp\UDEApp.Shared\obj\Debug\net8.0\UDEApp.Shared.csproj.CoreCompileInputs.cache
+C:\Users\zafer\OneDrive\Desktop\UDEApp\UDEApp\UDEApp.Shared\obj\Debug\net8.0\UDEApp.Shared.dll
+C:\Users\zafer\OneDrive\Desktop\UDEApp\UDEApp\UDEApp.Shared\obj\Debug\net8.0\refint\UDEApp.Shared.dll
+C:\Users\zafer\OneDrive\Desktop\UDEApp\UDEApp\UDEApp.Shared\obj\Debug\net8.0\UDEApp.Shared.pdb
+C:\Users\zafer\OneDrive\Desktop\UDEApp\UDEApp\UDEApp.Shared\obj\Debug\net8.0\ref\UDEApp.Shared.dll
+C:\Users\zafer\OneDrive\Desktop\UDEApp\UDEApp\UDEApp.Shared\obj\Debug\net8.0\UDEApp.Shared.csproj.AssemblyReference.cache

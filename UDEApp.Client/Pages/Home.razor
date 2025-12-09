@@ -1,0 +1,137 @@
+﻿@page "/"
+@using UDEApp.Shared.Models
+@inject HttpClient Http
+@using Markdig
+
+<PageTitle>UDE Computer Engineering - Ders Asistanı</PageTitle>
+
+<div class="container py-5">
+    <h1 class="text-center mb-5 text-primary fw-bold">
+        Universität Duisburg-Essen<br />
+        Computer Engineering (B.Sc.)
+    </h1>
+
+    @if (courses == null)
+    {
+        <div class="text-center my-5">
+            <div class="spinner-border text-primary" style="width: 4rem; height: 4rem;"></div>
+            <p class="mt-3 fs-4">Dersler yükleniyor...</p>
+        </div>
+    }
+    else
+    {
+        <!-- FİLTRE -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <select class="form-select form-select-lg" @onchange="Filter">
+                    <option value="">Tüm Uzmanlaşmalar</option>
+                    <option value="Software">Software Engineering</option>
+                    <option value="Communications">Communications</option>
+                    <option value="Both">Her İkisi</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- DERS TABLOSU -->
+        <div class="table-responsive">
+            <table class="table table-hover align-middle shadow-sm">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Ders Adı</th>
+                        <th>Uzmanlaşma</th>
+                        <th>Dönem</th>
+                        <th>ECTS</th>
+                        <th>İçerik</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var c in filteredCourses)
+                    {
+                        <tr>
+                            <td><strong>@c.Name</strong><br><small class="text-muted">@c.ShortDescription</small></td>
+                            <td>
+                                <span class="badge bg-@(c.Specialization == "Software" ? "primary" : c.Specialization == "Communications" ? "success" : "secondary")">
+                                    @c.Specialization
+                                </span>
+                            </td>
+                            <td>@c.Semester</td>
+                            <td><strong>@c.ECTS</strong></td>
+                            <td>
+                                <button class="btn btn-outline-primary btn-sm" @onclick="() => ShowDetail(c)">
+                                    İçeriği Oku
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <!-- BİTİRME PROJESİ BUTONU -->
+        <div class="text-center my-5">
+            <button class="btn btn-danger btn-lg px-5 py-3" @onclick="GenerateThesis">
+                Yeni Bitirme Projesi Önerisi Al
+            </button>
+        </div>
+
+        @if (!string.IsNullOrEmpty(thesisIdea))
+        {
+            <div class="alert alert-success shadow-lg p-4">
+                <h3 class="alert-heading">Önerilen Bitirme Projesi</h3>
+                <hr>
+                <p class="lead mb-0">@((MarkupString)thesisIdea.Replace("\n", "<br>"))</p>
+            </div>
+        }
+    }
+</div>
+
+<!-- DETAY MODAL -->
+@if (selectedCourse != null)
+{
+    <div class="modal fade show d-block" tabindex="-1" style="background-color: rgba(0,0,0,0.8);">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">@selectedCourse.Name</h5>
+                    <button type="button" class="btn-close btn-close-white" @onclick="() => selectedCourse = null"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="markdown-body">
+                        @((MarkupString)Markdown.ToHtml(selectedCourse.FullContent))
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" @onclick="() => selectedCourse = null">Kapat</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    List<Course>? courses;
+    List<Course> filteredCourses = new();
+    string thesisIdea = "";
+    Course? selectedCourse;
+
+    protected override async Task OnInitializedAsync()
+    {
+        courses = await Http.GetFromJsonAsync<List<Course>>("api/courses") ?? new();
+        filteredCourses = courses;
+    }
+
+    void Filter(ChangeEventArgs e)
+    {
+        var filter = e.Value?.ToString() ?? "";
+        filteredCourses = string.IsNullOrEmpty(filter)
+            ? courses ?? new()
+            : courses!.Where(x => x.Specialization.Contains(filter, StringComparison.OrdinalIgnoreCase)).ToList();
+    }
+
+    void ShowDetail(Course course) => selectedCourse = course;
+
+    async Task GenerateThesis()
+    {
+        thesisIdea = await Http.GetStringAsync("api/courses/thesis");
+    }
+}

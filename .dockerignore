@@ -1,0 +1,16 @@
+bin/
+obj/
+*.user
+*.vspscc
+*.vssscc
+*.suo
+[Dd]ebug/
+[Rr]elease/
+*.csproj.user
+*.db
+*.log
+.git/
+.gitignore
+.dockerignore
+Dockerfile*
+docker-compose*
